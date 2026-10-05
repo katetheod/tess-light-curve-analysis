@@ -1,106 +1,106 @@
-# NGC 104 Star Detection and Surface Density Analysis
+# Stellar Data Analysis: Star Detection, Surface Density & Transit Analysis
 
-## Overview
+This repository contains two Python/Jupyter notebook projects focused on **astronomical data analysis**, combining image-based stellar population analysis with time-series analysis of stellar light curves.
 
-This project analyzes an astronomical image of the globular cluster **NGC 104** using Python. The analysis focuses on detecting stars in the image, determining their spatial distribution, calculating the stellar surface density as a function of radius, and fitting a King model to the resulting density profile.
+The notebooks demonstrate a practical workflow for working with astronomical observations: data preprocessing, feature extraction, statistical analysis, visualization, and physical model fitting.
 
-The project was developed as part of an astronomy data-analysis assignment and demonstrates the use of Python for astronomical image processing, source detection, statistical analysis, and scientific modelling.
+## Projects
 
-## Objectives
+### 1. NGC 104 — Star Detection and Surface Density Analysis
 
-The analysis consists of the following steps:
+**Notebook:** `surface_density_analysis.ipynb`
 
-1. Display the NGC 104 image in pixel coordinates.
-2. Check for World Coordinate System (WCS) information in the FITS header.
-3. Transform the image to sky coordinates using Right Ascension (RA) and Declination (Dec).
-4. Process the image by handling invalid/NaN values and subtracting the background.
-5. Detect stars using `DAOStarFinder`.
-6. Perform aperture photometry on the detected sources.
-7. Estimate the centre of the globular cluster using Gaussian fits to the spatial distribution of detected stars.
-8. Calculate the radial surface density of stars.
-9. Fit a King model to the surface-density profile.
-10. Estimate the core radius of the cluster from the fitted model.
+This project analyses an astronomical image of the globular cluster **NGC 104 (47 Tucanae)**. The analysis focuses on detecting stars in the image and studying their spatial distribution.
 
-## Methods
+Main steps include:
 
-### Image and coordinate analysis
+- Astronomical image preprocessing and inspection
+- Star detection using `DAOStarFinder`
+- Aperture photometry of detected sources
+- Gaussian fitting to stellar profiles
+- Construction of radial stellar-density profiles
+- Analysis of the spatial distribution of stars
+- Fitting a **King model** to the observed surface-density profile
+- Estimation of cluster structural properties such as the core radius
 
-The input data is a FITS image:
+**Data-analysis skills demonstrated:**
 
-```text
-ic2r02050_drz.fits
-```
+- Processing scientific imaging data
+- Feature/source detection
+- Data cleaning and transformation
+- Statistical modelling
+- Parameter estimation
+- Exploratory data visualization
+- Model fitting and interpretation
 
-The image is examined in pixel coordinates and its FITS header is checked for WCS information. When WCS information is available, the image is displayed using sky coordinates (RA and Dec).
+---
 
-### Image preprocessing
+### 2. TESS Light-Curve Analysis
 
-Invalid values in the image are masked and the median background is subtracted. Remaining invalid values are replaced with zeros before source detection.
+**Notebook:** `light_curve_analysis.ipynb`
 
-### Star detection
+This project analyses **TESS stellar light-curve data** to identify and model a transit signal.
 
-Stars are detected using `DAOStarFinder` from the `photutils` package. The detection threshold is based on an estimate of the image noise using the median absolute deviation.
+The analysis includes:
 
-Aperture photometry is then performed around the detected sources.
+- Loading and cleaning observational time-series data
+- Handling missing values
+- Separating time and flux measurements
+- Visualizing raw and cleaned light curves
+- Applying moving-window smoothing
+- Identifying the transit region
+- Modelling the expected stellar flux during a planetary transit
+- Fitting the transit model to the observed light curve using `scipy.optimize.curve_fit`
 
-### Cluster-centre estimation
+The project demonstrates a typical astronomical time-series workflow, from raw observational data to a fitted physical model.
 
-The x and y positions of the detected stars are histogrammed separately. Gaussian functions are fitted to these distributions using `scipy.optimize.curve_fit` to estimate the centre of the cluster.
-
-### Surface-density profile
-
-The radial distance of each detected star from the estimated cluster centre is calculated.
-
-The stars are divided into radial annuli, and the stellar surface density is calculated as:
-
-```text
-surface density = number of stars / annulus area
-```
-
-Uncertainties are estimated from the number of detected stars in each annulus.
-
-### King-model fitting
-
-The resulting surface-density profile is fitted with a King model:
-
-```text
-n(r) = n_theta [1 + (r/a)²]^(-γ/2)
-```
-
-The fitted parameters are then used to estimate the core radius of the cluster.
-
-## Technologies and Libraries
-
-* Python
-* NumPy
-* Matplotlib
-* SciPy
-* Astropy
-* Photutils
-* Jupyter Notebook
+---
 
 
-## Results
+## Technologies
 
-The notebook produces visualizations of:
+- Python
+- Jupyter Notebook
+- NumPy
+- SciPy
+- Matplotlib
+- Astropy
+- Photutils
 
-* NGC 104 in pixel coordinates
-* NGC 104 in sky coordinates
-* detected stars
-* x and y distributions of detected stars with Gaussian fits
-* stellar surface density as a function of radius
-* King-model fit to the surface-density profile
+## Key Methods
 
-The final analysis provides an estimate of the core radius of NGC 104 based on the fitted King model.
+### Astronomical Image Analysis
 
-## Data
+The NGC 104 notebook uses astronomical image-processing techniques to identify stellar sources and quantify their spatial distribution. Detected stars are measured photometrically and used to construct a radial surface-density profile, which is then compared with a King-model description of the cluster.
 
-The analysis uses the FITS image:
+### Time-Series Analysis
 
-```text
-ic2r02050_drz.fits
-```
+The TESS notebook works with stellar flux measurements as a function of time. The data are cleaned and smoothed before a transit model is fitted to the observed signal using numerical optimization.
 
-The original astronomical data file is not included in this repository due to its size. Please refer to the original data source for the dataset and its usage conditions.
+## Skills Demonstrated
 
+**Data Analysis**
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Feature extraction
+- Time-series analysis
+- Statistical analysis
+- Numerical optimization
+- Model fitting
+
+**Scientific Computing**
+- NumPy
+- SciPy
+- Astropy
+- Photutils
+- Matplotlib
+- Jupyter
+
+**Astronomical Data**
+- FITS/image data
+- Stellar source detection
+- Aperture photometry
+- Surface-density analysis
+- TESS light curves
+- Transit modelling
 
